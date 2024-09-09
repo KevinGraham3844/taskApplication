@@ -18,11 +18,12 @@ export default [
       },
     },
     settings: { react: { version: '18.3' } },
-    plugins: {
+    plugins:[ {
       react,
       'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
+      'react-refresh': reactRefresh, 
+    }, "cypress" 
+  ],
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
@@ -33,6 +34,19 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "cypress/no-assigning-return-values": "error",
+      "cypress/no-unnecessary-waiting": "error",
+      "cypress/assertion-before-screenshot": "warn",
+      "cypress/no-force": "warn",
+      "cypress/no-async-tests": "error",
+      "cypress/no-async-before": "error",
+      "cypress/no-pause": "error",
+      "cypress/no-debug": "error"
     },
+    "env": {
+      "cypress/globals": true,
+      "vitest-globals/env": true
+    },
+    "extends": ["plugin:vitest-globals/recommended"]
   },
 ]
