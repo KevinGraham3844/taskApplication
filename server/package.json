@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint . && cd .. && cd client && npm run lint",
     "build:ui": "rm -rf dist && cd ../client && npm run build && cp -r dist ../server",
-    "test:e2e": "cd ../client && run test:e2e"
+    "test:e2e": "cd ../client && npm run test:e2e"
   },
   "author": "",
   "license": "ISC",
