@@ -29,6 +29,7 @@ jobs:
           echo TEST_MONGODB_URI=$TEST_MONGODB_URI >> .env
           echo PORT=$PORT >> .env
           echo SECRET=$SECRET >> .env
+          npm run build:ui
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
@@ -36,3 +37,11 @@ jobs:
           PORT: ${{ secrets.PORT }}
       - name: server tests
         run: cd server && npm test
+      - name: unit tests
+        run: cd client && npm test
+      - name: e2e tests
+        uses: cypress-io/github-actions@v5
+        with:
+          command: npm run test:e2e
+          start: npm run start && cd client
+          wait-on: http://localhost:3001
