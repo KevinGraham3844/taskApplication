@@ -1,11 +1,13 @@
+
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const loginRouter = require('express').Router();
 const User = require('../models/user');
 const config = require('../utils/config');
+const logger = require('../utils/logger')
 
 loginRouter.post('/', async (req, res) => {
-    console.log('the test accessed the body', req.body)
+    logger.info('the test accessed the body', req.body)
     const { username, password } = req.body;
     const user = await User.findOne({ username })
     

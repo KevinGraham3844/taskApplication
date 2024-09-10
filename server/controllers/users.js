@@ -5,6 +5,7 @@ const User = require('../models/user');
 usersRouter.get('/', async (_req, res) => {
     const users = await User.find({});
     res.json(users)
+    
 });
 
 usersRouter.post('/', async (req, res) => {
@@ -28,6 +29,7 @@ usersRouter.post('/', async (req, res) => {
     const savedUser = await user.save();
 
     res.status(201).json(savedUser);
+   
 });
 
 module.exports = usersRouter;

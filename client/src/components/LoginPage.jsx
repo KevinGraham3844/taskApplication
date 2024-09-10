@@ -10,7 +10,8 @@ const LoginPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const login = async () => {
+    const login = async (event) => {
+        event.preventDefault()
         console.log('logging in user')
         dispatch(loginUser(username, password))
         setUsername('')
