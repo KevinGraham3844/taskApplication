@@ -31,5 +31,5 @@ module.exports = {
         "consistent-return": "off",
         "no-else-return": "off"
     },
-    "ignorePatterns": ["tests"],
+    "ignorePatterns": ["tests", "dist"],
 }
