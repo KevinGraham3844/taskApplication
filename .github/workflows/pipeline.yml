@@ -51,3 +51,21 @@ jobs:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
           wait-for-success: true
+      - name: successful deployment notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          color: '#00FF00'
+          description: to https://taskapplication-nyjq.onrender.com by KevinGraham3844
+          text: A new version of the Task App has been deployed successfully! 
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Failed deployment
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          color: '#FF0000'
+          text: Build failed
+          description: commit https://github.com/${{github.repository}}/commit/${{github.sha}} by KevinGraham3844 broke the build :(
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
