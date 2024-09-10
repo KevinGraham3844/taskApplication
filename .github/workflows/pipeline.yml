@@ -21,3 +21,17 @@ jobs:
         run: cd client && npm install
       - name: check style
         run: cd server && npm run lint
+      - name: production build
+        run: |
+          touch .env
+          echo MONGODB_URI=$MONGODB_URI >> .env
+          echo TEST_MONGODB_URI=$TEST_MONGODB_URI >> .env
+          echo PORT=$PORT >> .env
+          echo SECRET=$SECRET >> .env
+        env: 
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
+          PORT: ${{ secrets.PORT }}
+      - name: server tests
+        run: cd server && npm test
