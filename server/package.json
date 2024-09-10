@@ -7,7 +7,8 @@
     "test": "cross-env  NODE_ENV=test node --test",
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "lint": "eslint . && cd .. && cd client && npm run lint"
+    "lint": "eslint . && cd .. && cd client && npm run lint",
+    "build:ui": "rm -rf dist && cd ../client && npm run build && cp -r dist ../server"
   },
   "author": "",
   "license": "ISC",
@@ -21,11 +22,17 @@
     "mongoose": "^8.6.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.1",
     "cross-env": "^7.0.3",
-    "eslint": "^9.9.1",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0",
     "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
     "supertest": "^7.0.0"
   }
 }

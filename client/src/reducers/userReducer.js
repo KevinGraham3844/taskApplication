@@ -7,9 +7,9 @@ const userSlice = createSlice({
     initialState: null,
     reducers: {
         setUser(state, action) {
-            return action.payload
-        }
-    }
+            return action.payload;
+        },
+    },
 });
 
 export const loginUser = (username, password) => {
@@ -17,7 +17,7 @@ export const loginUser = (username, password) => {
         try {
             const user = await loginService.login({
                 username,
-                password
+                password,
             });
 
             window.localStorage.setItem('loggedUser', JSON.stringify(user));
@@ -31,16 +31,16 @@ export const loginUser = (username, password) => {
 
 export const retainUser = user => {
     return dispatch => {
-        dispatch(setUser(user))
-    }
-}
+        dispatch(setUser(user));
+    };
+};
 
 export const logoutUser = () => {
     return dispatch => {
-        window.localStorage.clear()
-        dispatch(setUser(null))
-    }
-}
+        window.localStorage.clear();
+        dispatch(setUser(null));
+    };
+};
 
 export const { setUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,3 +1,5 @@
+/* eslint no-console: ["error", { allow: ["log", "error"] }] */
+
 const info = (...params) => {
     console.log(...params)
 }

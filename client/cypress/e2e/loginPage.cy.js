@@ -1,6 +1,6 @@
 describe('Login Page', () => {
   beforeEach(function() {
-    cy.visit('http://localhost:5173')
+    cy.visit('http://localhost:3001')
   }) 
   it('page appears after clicking login', () => {
     
@@ -11,10 +11,10 @@ describe('Login Page', () => {
 
   it('logging in with correct credentials takes you to main page', () => {
     cy.contains('Login').click()
-    cy.get('#username').type('cghahremani')
-    cy.get('#password').type('test384')
+    cy.get('#username').type('newUser')
+    cy.get('#password').type('test')
 
     cy.contains('Sign in').click()
-    cy.contains('welcome!')
+    cy.contains('Welcome')
   })
 })
