@@ -3,6 +3,8 @@ import FrontPage from './FrontPage';
 import { beforeEach, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+
 
 describe('Front page and its elements', () => {
     
@@ -12,7 +14,9 @@ describe('Front page and its elements', () => {
         render(<FrontPage navigate={mockHandler}/>, {
             wrapper: ({children}) => (
                 <MemoryRouter initialEntries={["/"]}>
-                    {children}
+                    <Provider>
+                        {children}
+                    </Provider>
                 </MemoryRouter>
             )
         })

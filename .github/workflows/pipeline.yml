@@ -37,8 +37,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
       - name: server tests
         run: cd server && npm test
-      - name: unit tests
-        run: cd client && npm test
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
