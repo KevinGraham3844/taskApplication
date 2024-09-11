@@ -2,21 +2,24 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../reducers/userReducer';
+import { createNewUser } from '../reducers/userReducer';
 
-function LoginPage() {
+function CreationPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const login = async (event) => {
+    const submitUser = async (event) => {
         event.preventDefault();
-        console.log('logging in user');
-        dispatch(loginUser(username, password));
-        setUsername('');
-        setPassword('');
+        console.log('creating user');
+        dispatch(createNewUser({
+            username,
+            password,
+            name,
+        }));
         navigate('/');
     };
 
@@ -25,7 +28,7 @@ function LoginPage() {
         <div className="w-full max-w-xs m-auto">
           <form
             className="bg-gradient-to-b from-gray-300 to-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4"
-            onSubmit={login}
+            onSubmit={submitUser}
           >
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -42,9 +45,17 @@ function LoginPage() {
                 Password
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={({ target }) => setPassword(target.value)}
-                id="password"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Name
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                onChange={({ target }) => setName(target.value)}
               />
             </div>
             <div className="flex space-x-4">
@@ -52,7 +63,7 @@ function LoginPage() {
                 className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
                 type="submit"
               >
-                Sign in
+                Create User
               </button>
               <button
                 type="button"
@@ -62,12 +73,10 @@ function LoginPage() {
                 Return
               </button>
             </div>
-
           </form>
         </div>
       </div>
-
     );
 }
 
-export default LoginPage;
+export default CreationPage;
