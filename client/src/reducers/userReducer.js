@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import loginService from '../services/login';
 import { setErrorNotification } from './errorNotificationReducer';
+import userService from '../services/user';
 
 const userSlice = createSlice({
     name: 'user',
@@ -25,6 +26,19 @@ export const loginUser = (username, password) => {
             console.log('successfully logged in: ', user);
         } catch (exception) {
             dispatch(setErrorNotification('WRONG USERNAME OR PASSWORD'));
+        }
+    };
+};
+
+export const createNewUser = (userInfo) => {
+    return async dispatch => {
+        try {
+            await userService.newUserCreation(userInfo);
+        } catch (error) {
+            if (error) {
+                console.log(error.response.data.error);
+                dispatch(setErrorNotification(error.response.data.error));
+            }
         }
     };
 };

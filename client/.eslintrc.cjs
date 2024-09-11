@@ -31,7 +31,10 @@ module.exports = {
     'arrow-parens': 'off',
     "no-use-before-define": ["error", {"functions": false, "classes": false, "variables": false}],
     'no-console': 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/prop-types": "off"
   },
   ignorePatterns: ['cypress', 'cypress.config.js', '.eslintrc.cjs', 'dist']
 };
