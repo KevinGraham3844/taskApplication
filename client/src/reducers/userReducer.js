@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import loginService from '../services/login';
 import { setErrorNotification } from './errorNotificationReducer';
 import userService from '../services/user';
+import taskService from '../services/task';
 
 const userSlice = createSlice({
     name: 'user',
@@ -23,6 +24,7 @@ export const loginUser = (username, password) => {
 
             window.localStorage.setItem('loggedUser', JSON.stringify(user));
             dispatch(setUser(user));
+            taskService.setToken(user.token);
             console.log('successfully logged in: ', user);
         } catch (exception) {
             dispatch(setErrorNotification('WRONG USERNAME OR PASSWORD'));
@@ -53,6 +55,7 @@ export const logoutUser = () => {
     return dispatch => {
         window.localStorage.clear();
         dispatch(setUser(null));
+        taskService.setToken(null);
     };
 };
 

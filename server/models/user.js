@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
     },
     passwordHash: {
         type: String
-    }
+    },
+    tasks: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Task'
+        }
+    ]
 });
 
 userSchema.set('toJSON', {

@@ -8,6 +8,7 @@ const mongoConnection = require('./utils/mongoConnection');
 
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
+const tasksRouter = require('./controllers/tasks');
 
 mongoConnection.connectToMongo();
 
@@ -20,8 +21,10 @@ app.get('/', (_req, res) => {
     res.send('<h1>task App api</h1>');
 });
 
+app.use(middleware.tokenExtractor);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/tasks', tasksRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
