@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import TaskCreationPage from './TaskCreationPage';
 import TaskHeaderButtons from './TaskHeaderButtons';
+import TaskList from './TaskList';
 
 function UserPage({ user, tasks }) {
     const [visible, setVisibility] = useState(false);
@@ -23,6 +24,7 @@ function UserPage({ user, tasks }) {
           </div>
           <div>
             <TaskHeaderButtons setVisibility={setVisibility} />
+            <TaskList tasks={tasks} />
           </div>
         </div>
         <div>
