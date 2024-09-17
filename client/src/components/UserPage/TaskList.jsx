@@ -3,7 +3,7 @@ import Task from './Task';
 function TaskList({ tasks }) {
     console.log(tasks);
     return (
-      <div className="flex flex-col mt-20">
+      <div className="flex flex-col ">
         <div className="-m-1.5 min-w-full inline-block align-middle">
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className="overflow-hidden">
