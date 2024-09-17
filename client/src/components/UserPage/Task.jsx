@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useDispatch } from 'react-redux';
-import { editTask } from '../reducers/tasksReducer';
+import { editTask } from '../../reducers/tasksReducer';
 
 function Task({ task }) {
   const dispatch = useDispatch();
@@ -22,6 +21,7 @@ function Task({ task }) {
             onChange={changeComplete}
             type="checkbox"
             className="mt-3 ml-11"
+            checked={task.completed ? 'checked' : ''}
           />
         </label>
       </td>

@@ -1,14 +1,10 @@
-/* eslint-disable object-shorthand */
-/* eslint-disable react/jsx-boolean-value */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Select, Field, Label } from '@headlessui/react';
 import Datepicker from 'react-tailwindcss-datepicker';
-import { newTask } from '../reducers/tasksReducer';
+import { newTask } from '../../reducers/tasksReducer';
 
 function TaskCreationPage({ visible, setVisibility }) {
     const [title, setTitle] = useState('');
@@ -25,7 +21,8 @@ function TaskCreationPage({ visible, setVisibility }) {
 
     if (!visible) return null;
 
-    const submitTask = () => {
+    const submitTask = (event) => {
+      event.preventDefault();
       dispatch(newTask({
         title: title,
         description: description,
@@ -117,6 +114,7 @@ function TaskCreationPage({ visible, setVisibility }) {
               </label>
               <Datepicker
                 useRange={false}
+                // eslint-disable-next-line react/jsx-boolean-value
                 asSingle={true}
                 value={dueDate}
                 onChange={newValue => setDueDate(newValue)}
