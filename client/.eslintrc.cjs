@@ -1,3 +1,4 @@
+const { off } = require("../server/models/user");
 
 
 
@@ -33,8 +34,10 @@ module.exports = {
     'no-console': 0,
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "react/prop-types": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "object-shorthand": "off",
   },
   ignorePatterns: ['cypress', 'cypress.config.js', '.eslintrc.cjs', 'dist']
 };

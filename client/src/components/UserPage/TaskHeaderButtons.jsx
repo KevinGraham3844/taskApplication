@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../reducers/userReducer';
-import { clearTasks } from '../reducers/tasksReducer';
+import { logoutUser } from '../../reducers/userReducer';
+import { clearTasks } from '../../reducers/tasksReducer';
 
 function TaskHeaderButtons({ setVisibility }) {
     const dispatch = useDispatch();
