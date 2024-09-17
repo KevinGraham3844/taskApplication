@@ -11,6 +11,10 @@ const taskSlice = createSlice({
         appendTasks(state, action) {
             state.push(action.payload);
         },
+        updateTask(state, action) {
+            const updatedTask = action.payload;
+            return state.map(task => (task.id !== updatedTask.id ? task : updatedTask));
+        },
     },
 });
 
@@ -35,5 +39,12 @@ export const clearTasks = () => {
     };
 };
 
-export const { setTasks, appendTasks } = taskSlice.actions;
+export const editTask = (taskObject) => {
+    return async dispatch => {
+        await taskService.changeTask(taskObject);
+        dispatch(updateTask(taskObject));
+    };
+};
+
+export const { setTasks, appendTasks, updateTask } = taskSlice.actions;
 export default taskSlice.reducer;

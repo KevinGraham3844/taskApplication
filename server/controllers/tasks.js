@@ -39,4 +39,28 @@ tasksRouter.get('/:user_id', async (req, res) => {
     res.json(tasks.filter(task => task.user._id.toString() === req.params.user_id))
 });
 
+tasksRouter.put('/:id', middleware.userExtractor, async (req, res) => {
+    
+    const body = req.body;
+    const user = req.user;
+    const foundTask = await Task.findById(req.params.id)
+
+    const changedTask = {
+        title: body.title,
+        description: body.description,
+        priority: body.priority,
+        category: body.category,
+        dueDate: body.dueDate,
+        completed: body.completed,
+    };
+    logger.info(foundTask.user.toString() === user.id);
+    if (foundTask.user.toString() === user.id) {
+        const updatedTask = await Task.findByIdAndUpdate(req.params.id, changedTask, { new: true});
+        res.json(updatedTask);
+    } else {
+        return res.status(401).json({ error: 'user not authorized to change this task' });
+    }
+    
+})
+
 module.exports = tasksRouter;

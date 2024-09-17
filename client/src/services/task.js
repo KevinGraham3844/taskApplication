@@ -26,4 +26,14 @@ const createTask = async (taskObject) => {
     return response.data;
 };
 
-export default { getAll, setToken, createTask };
+const changeTask = async (taskObject) => {
+    const config = {
+        headers: { Authorization: token },
+    };
+    const response = await axios.put(`${baseUrl}/${taskObject.id}`, taskObject, config);
+    return response.data;
+};
+
+export default {
+ getAll, setToken, changeTask, createTask,
+};
