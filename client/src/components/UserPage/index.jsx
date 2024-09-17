@@ -2,11 +2,16 @@ import { useState } from 'react';
 import TaskCreationPage from './TaskCreationPage';
 import TaskHeaderButtons from './TaskHeaderButtons';
 import TaskList from './TaskList';
+import TaskSortButtons from './TaskSortButtons';
 
 function UserPage({ user, tasks }) {
     const [visible, setVisibility] = useState(false);
+    const [sorted, setSorted] = useState('All');
 
     const date = new Date();
+
+    const nonCompletedTasks = tasks.filter(task => !task.completed);
+    const completedTasks = tasks.filter(task => task.completed);
 
     console.log(user, tasks);
     return (
@@ -24,7 +29,16 @@ function UserPage({ user, tasks }) {
           </div>
           <div>
             <TaskHeaderButtons setVisibility={setVisibility} />
-            <TaskList tasks={tasks} />
+            <TaskSortButtons setSorted={setSorted} />
+            {sorted === 'All' && (
+              <TaskList tasks={tasks} />
+            )}
+            {sorted === 'Complete' && (
+            <TaskList tasks={completedTasks} />
+            )}
+            {sorted === 'Incomplete' && (
+            <TaskList tasks={nonCompletedTasks} />
+            )}
           </div>
         </div>
         <div>
