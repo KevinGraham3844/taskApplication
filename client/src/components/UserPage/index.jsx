@@ -29,7 +29,16 @@ function UserPage({ user, tasks }) {
           </div>
           <div>
             <TaskHeaderButtons setVisibility={setVisibility} />
-            <TaskSortButtons setSorted={setSorted} />
+            <div className="flex flex-row justify-between">
+              <TaskSortButtons setSorted={setSorted} />
+              <div className="mt-10 mr-10 text-2xl text-shadow">
+                {`${nonCompletedTasks.length} Tasks Remaining`}
+              </div>
+
+            </div>
+            <div className="relative flex py-5 items-center">
+              <div className="flex-grow border-t border-8 border-orange-500" />
+            </div>
             {sorted === 'All' && (
               <TaskList tasks={tasks} />
             )}
@@ -39,6 +48,9 @@ function UserPage({ user, tasks }) {
             {sorted === 'Incomplete' && (
             <TaskList tasks={nonCompletedTasks} />
             )}
+          </div>
+          <div className="relative flex py-5 items-center">
+            <div className="flex-grow border-t border-8 border-orange-500" />
           </div>
         </div>
         <div>

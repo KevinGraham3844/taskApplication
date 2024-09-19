@@ -39,5 +39,5 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "off",
     "object-shorthand": "off",
   },
-  ignorePatterns: ['cypress', 'cypress.config.js', '.eslintrc.cjs', 'dist']
+  ignorePatterns: ['cypress', 'cypress.config.js', '.eslintrc.cjs', 'dist', 'tailwind.config.js']
 };
