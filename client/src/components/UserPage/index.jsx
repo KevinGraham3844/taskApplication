@@ -31,7 +31,7 @@ function UserPage({ user, tasks }) {
             <TaskHeaderButtons setVisibility={setVisibility} />
             <div className="flex flex-row justify-between">
               <TaskSortButtons setSorted={setSorted} />
-              <div className="mt-10 mr-10 text-2xl text-shadow">
+              <div className="mt-9 ml-5 mr-10 text-2xl text-shadow">
                 {`${nonCompletedTasks.length} Tasks Remaining`}
               </div>
 
