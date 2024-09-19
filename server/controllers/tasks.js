@@ -40,10 +40,9 @@ tasksRouter.get('/:user_id', async (req, res) => {
 });
 
 tasksRouter.put('/:id', middleware.userExtractor, async (req, res) => {
-    
     const body = req.body;
     const user = req.user;
-    const foundTask = await Task.findById(req.params.id)
+    const foundTask = await Task.findById(req.params.id);
 
     const changedTask = {
         title: body.title,
@@ -59,8 +58,20 @@ tasksRouter.put('/:id', middleware.userExtractor, async (req, res) => {
         res.json(updatedTask);
     } else {
         return res.status(401).json({ error: 'user not authorized to change this task' });
+    };
+});
+
+tasksRouter.delete('/:id', middleware.userExtractor, async (req, res) => {
+    const user = req.user;
+    const task = await Task.findById(req.params.id);
+
+    if (task.user.toString() === user.id) {
+        await Task.findByIdAndDelete(req.params.id)
+        logger.info('task deleted!')
+        res.status(204).end();
+    } else {
+        return res.status(401).json({ error: 'user not authorized to delete this blog' });
     }
-    
-})
+});
 
 module.exports = tasksRouter;

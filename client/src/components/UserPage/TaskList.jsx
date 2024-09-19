@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import Task from './Task';
 
 function TaskList({ tasks }) {
@@ -15,6 +16,7 @@ function TaskList({ tasks }) {
                     <th scope="col" className="px-6 py-3 text-start text-xs font-bold text-black-500 uppercase dark:text-neutral-500">Priority</th>
                     <th scope="col" className="px-6 py-3 text-start text-xs font-bold text-black-500 uppercase dark:text-neutral-500">Category</th>
                     <th scope="col" className="px-6 py-3 text-start text-xs font-bold text-black-500 uppercase dark:text-neutral-500">Due Date</th>
+                    <th />
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
