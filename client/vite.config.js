@@ -9,4 +9,7 @@ export default defineConfig({
     globals: true,
     setupFiles: './testSetup.js',
   },
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
 });
