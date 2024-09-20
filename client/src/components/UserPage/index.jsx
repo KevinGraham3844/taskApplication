@@ -49,12 +49,12 @@ function UserPage({ user, tasks }) {
             <TaskList tasks={nonCompletedTasks} />
             )}
           </div>
-          <div className="relative flex py-5 items-center">
-            <div className="flex-grow border-t border-8 border-orange-500" />
-          </div>
         </div>
         <div>
           <TaskCreationPage visible={visible} setVisibility={setVisibility} />
+        </div>
+        <div className="flex py-5 items-center">
+          <div className="flex-grow border-t border-8 border-orange-500" />
         </div>
       </div>
 

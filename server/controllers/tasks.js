@@ -42,6 +42,7 @@ tasksRouter.get('/:user_id', async (req, res) => {
 tasksRouter.put('/:id', middleware.userExtractor, async (req, res) => {
     const body = req.body;
     const user = req.user;
+    logger.info(body);
     const foundTask = await Task.findById(req.params.id);
 
     const changedTask = {

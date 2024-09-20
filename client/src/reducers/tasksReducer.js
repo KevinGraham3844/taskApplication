@@ -44,6 +44,13 @@ export const clearTasks = () => {
 };
 
 export const editTask = (taskObject) => {
+    if (taskObject.dueDate.startDate) {
+        const updatedTask = { ...taskObject, dueDate: taskObject.dueDate.startDate.toISOString().split('T')[0] };
+        return async dispatch => {
+            await taskService.changeTask(updatedTask);
+            dispatch(updateTask(updatedTask));
+        };
+    }
     return async dispatch => {
         await taskService.changeTask(taskObject);
         dispatch(updateTask(taskObject));
