@@ -30,6 +30,7 @@ const changeTask = async (taskObject) => {
     const config = {
         headers: { Authorization: token },
     };
+    console.log(taskObject);
     const response = await axios.put(`${baseUrl}/${taskObject.id}`, taskObject, config);
     return response.data;
 };
