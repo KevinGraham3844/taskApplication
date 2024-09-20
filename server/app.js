@@ -1,5 +1,7 @@
 const express = (require('express'));
 require('express-async-errors');
+const path = require('path');
+
 
 const app = express();
 const cors = require('cors');
@@ -19,6 +21,14 @@ app.use(middleware.requestLogger);
 
 app.get('/', (_req, res) => {
     res.send('<h1>task App api</h1>');
+});
+
+app.get(['/login', '/creation'], (req, res) => {
+    res.sendFile(path.join(__dirname, '/dist/index.html'), (error) => {
+        if (error) {
+            res.status(500).send(error);
+        }
+    });
 });
 
 app.use(middleware.tokenExtractor);
