@@ -3,6 +3,7 @@ import TaskCreationPage from './TaskCreationPage';
 import TaskHeaderButtons from './TaskHeaderButtons';
 import TaskList from './TaskList';
 import TaskSortButtons from './TaskSortButtons';
+import TaskFooterButtons from './TaskFooterButtons';
 
 function UserPage({ user, tasks }) {
     const [visible, setVisibility] = useState(false);
@@ -55,6 +56,9 @@ function UserPage({ user, tasks }) {
         </div>
         <div className="flex py-5 items-center">
           <div className="flex-grow border-t border-8 border-orange-500" />
+        </div>
+        <div>
+          <TaskFooterButtons tasks={tasks} />
         </div>
       </div>
 
