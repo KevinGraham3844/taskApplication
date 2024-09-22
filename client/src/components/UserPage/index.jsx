@@ -34,7 +34,7 @@ function UserPage({ user, tasks }) {
               <div>
                 <TaskSortButtons setSorted={setSorted} />
               </div>
-              <div className="mt-9 ml-20 text-xl text-shadow">
+              <div className="mt-9 mr-2 ml-20 text-xl text-shadow">
                 {`${nonCompletedTasks.length} Tasks Remaining`}
               </div>
 
