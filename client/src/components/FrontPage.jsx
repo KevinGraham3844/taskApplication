@@ -39,9 +39,13 @@ function FrontPage({ navigate }) {
         {!user && (
           <LoggedOutFront navigate={navigate} />
         )}
-        {user && tasks && (
-          <UserPage user={user} tasks={tasks} />
-        )}
+        <div className="bg-gradient-to-r from-slate-300 to-slate-500 h-screen w-screen flex items-center justify-center">
+          <div className="max-w-2xl flex-col m-auto border-4 rounded-xl p-5 w-screen">
+            {user && tasks && (
+            <UserPage user={user} tasks={tasks} />
+          )}
+          </div>
+        </div>
       </>
     );
 }

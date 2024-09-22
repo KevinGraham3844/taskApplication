@@ -1,6 +1,6 @@
 function TaskSortButtons({ setSorted }) {
     return (
-      <div className="ml-4 mr-4 mt-10 flex space-x-20">
+      <div className="ml-4 mr-4 mt-10 flex space-x-10">
         <button
           type="button"
           onClick={() => setSorted('All')}

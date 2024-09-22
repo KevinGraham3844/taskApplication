@@ -16,7 +16,7 @@ function UserPage({ user, tasks }) {
 
     console.log(user, tasks);
     return (
-      <div className="bg-gradient-to-r from-slate-300 to-slate-500 h-screen">
+      <div>
         <div>
           <div className="flex flex-row justify-between">
             <h1 className="ml-5 mt-6 text-2xl text-orange-500 text-shadow font-mono outline-4">
@@ -30,9 +30,11 @@ function UserPage({ user, tasks }) {
           </div>
           <div>
             <TaskHeaderButtons setVisibility={setVisibility} />
-            <div className="flex flex-row justify-between">
-              <TaskSortButtons setSorted={setSorted} />
-              <div className="mt-9 ml-5 mr-10 text-2xl text-shadow">
+            <div className="flex flex-row justify-between w-full">
+              <div>
+                <TaskSortButtons setSorted={setSorted} />
+              </div>
+              <div className="mt-9 ml-20 text-xl text-shadow">
                 {`${nonCompletedTasks.length} Tasks Remaining`}
               </div>
 
