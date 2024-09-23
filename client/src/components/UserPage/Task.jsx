@@ -30,7 +30,7 @@ function Task({ task, setVisibility, setTasktoEdit }) {
 
   const content = (
     <div className="w-64 text-sm text-gray-500 dark:text-gray-400">
-      <div className="border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+      <div className="border-b border-gray-200 bg-gray-100 px-1 py-1 dark:border-gray-600 dark:bg-gray-700">
         <h3 className="font-semibold text-gray-900 dark:text-white">{task.title}</h3>
       </div>
       <div className="px-3 py-2">
@@ -46,23 +46,23 @@ function Task({ task, setVisibility, setTasktoEdit }) {
           <input
             onChange={changeComplete}
             type="checkbox"
-            className=" ml-11"
+            className="ml-6"
             checked={task.completed ? 'checked' : ''}
           />
         </label>
       </td>
       <td>
         <Popover content={content} trigger="click">
-          <Button size="sm" color="gray">
+          <Button size="xs" color="gray" className="mr-2">
             {task.title}
           </Button>
         </Popover>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{task.priority}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{task.category}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{task.dueDate.slice(0, 10)}</td>
+      <td className="hidden sm:table-cell px-1 py-2 whitespace-nowrap text-start text-sm font-medium text-gray-800 dark:text-neutral-200">{task.priority}</td>
+      <td className="hidden lg:table-cell px-1 py-2 whitespace-nowrap text-start text-sm font-medium text-gray-800 dark:text-neutral-200">{task.category}</td>
+      <td className="px-1 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{task.dueDate.slice(0, 10)}</td>
       <td>
-        <div className="mb-3">
+        <div className="mb-3 ml-3">
           <button
             type="button"
             className="mt-5 text-white-700 border border-white-700 hover:bg-gray-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
