@@ -40,7 +40,7 @@ function FrontPage({ navigate }) {
           <LoggedOutFront navigate={navigate} />
         )}
         <div className="bg-gradient-to-r from-slate-300 to-slate-500 h-screen w-screen flex items-center justify-center">
-          <div className="max-w-3xl flex-col m-auto border-4 rounded-xl pb-2 w-screen">
+          <div className="lg:max-w-4xl lg:flex-col lg:m-auto lg:border-gray-400 lg:border-4 lg:p-1 lg:rounded-xl lg:h-3/6 h-screen w-screen">
             {user && tasks && (
             <UserPage user={user} tasks={tasks} />
           )}

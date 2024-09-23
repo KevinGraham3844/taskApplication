@@ -18,32 +18,33 @@ function UserPage({ user, tasks }) {
     return (
       <div>
         <div>
-          <div className="flex flex-row justify-between">
-            <h1 className="ml-5 mt-6 text-2xl text-orange-500 text-shadow font-mono outline-4">
+          <div className="mb-5 flex flex-row justify-between">
+            <h1 className="text-base lg:text-xl text-orange-500 text-shadow font-mono outline-4">
               Welcome
               {' '}
               {user.name}
             </h1>
-            <h2 className="mr-5 mt-7 text-2xl text-orange-500 text-shadow">
+            <h2 className="text-base lg:text-xl text-orange-500 text-shadow">
               {date.toDateString()}
             </h2>
           </div>
           <div>
             <TaskHeaderButtons setVisibility={setVisibility} />
-            <div className="flex flex-row justify-between w-full">
-              <div>
-                <TaskSortButtons setSorted={setSorted} />
-              </div>
-              <div className="mt-9 mr-2 ml-20 text-xl text-shadow">
-                {`${nonCompletedTasks.length} Tasks Remaining`}
-              </div>
-
+          </div>
+          <div>
+            <div>
+              <TaskSortButtons setSorted={setSorted} />
             </div>
-            <div className="relative flex py-5 items-center">
-              <div className="flex-grow border-t border-8 border-orange-500" />
+            <div className="text-sm text-shadow">
+              {`${nonCompletedTasks.length} Tasks Remaining`}
             </div>
+          </div>
+          <div className="relative flex py-5 items-center">
+            <div className="flex-grow border-t border-8 border-orange-500" />
+          </div>
+          <div>
             {sorted === 'All' && (
-              <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} />
             )}
             {sorted === 'Complete' && (
             <TaskList tasks={completedTasks} />
