@@ -118,6 +118,7 @@ function TaskCreationPage({ visible, setVisibility }) {
                 Due Date
               </label>
               <Datepicker
+                inline
                 onSelectedDateChanged={handleDatePickerChange}
               />
 
