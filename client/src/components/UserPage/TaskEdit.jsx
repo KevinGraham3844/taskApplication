@@ -104,6 +104,7 @@ function TaskEdit({ visible, setVisibility, task }) {
                 Due Date
               </label>
               <Datepicker
+                inline
                 onSelectedDateChanged={handleDatePickerChange}
               />
               <div className="flex space-x-4 mt-7">
