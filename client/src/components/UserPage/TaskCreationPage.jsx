@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Select, Field, Label } from '@headlessui/react';
-import Datepicker from 'react-tailwindcss-datepicker';
+import { Datepicker } from 'flowbite-react';
 import { newTask } from '../../reducers/tasksReducer';
 
 function TaskCreationPage({ visible, setVisibility }) {
@@ -11,10 +11,7 @@ function TaskCreationPage({ visible, setVisibility }) {
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState('Low');
     const [category, setCategory] = useState('Work');
-    const [dueDate, setDueDate] = useState({
-        startDate: null,
-        endDate: null,
-    });
+    const [dueDate, setDueDate] = useState(new Date());
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,19 +20,19 @@ function TaskCreationPage({ visible, setVisibility }) {
 
     const submitTask = (event) => {
       event.preventDefault();
+      if (typeof dueDate === 'object') {
+        setDueDate(dueDate.toISOString().split('T')[0]);
+      }
       dispatch(newTask({
         title: title,
         description: description,
         priority: priority,
         category: category,
-        dueDate: dueDate.startDate,
+        dueDate: dueDate,
       }));
       setTitle('');
       setDescription('');
-      setDueDate({
-        startDate: null,
-        endDate: null,
-    });
+      setDueDate(new Date());
       setPriority('Low');
       setCategory('Work');
       setVisibility(false);
@@ -45,16 +42,18 @@ function TaskCreationPage({ visible, setVisibility }) {
     const cancelForm = () => {
         setTitle('');
         setDescription('');
-        setDueDate({
-          startDate: null,
-          endDate: null,
-      });
+        setDueDate(new Date());
         setPriority('Low');
         setCategory('Work');
         setVisibility(false);
     };
 
-    console.log(title, description, priority, category, dueDate.startDate);
+    const handleDatePickerChange = (date) => {
+      const newDate = date.toISOString().split('T')[0];
+      setDueDate(newDate);
+    };
+
+    console.log(title, description, priority, category, dueDate);
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm
@@ -119,11 +118,7 @@ function TaskCreationPage({ visible, setVisibility }) {
                 Due Date
               </label>
               <Datepicker
-                useRange={false}
-                // eslint-disable-next-line react/jsx-boolean-value
-                asSingle={true}
-                value={dueDate}
-                onChange={newValue => setDueDate(newValue)}
+                onSelectedDateChanged={handleDatePickerChange}
               />
 
               <div className="flex space-x-4 mt-7">

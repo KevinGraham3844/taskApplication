@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Select, Field, Label } from '@headlessui/react';
-import Datepicker from 'react-tailwindcss-datepicker';
+import { Datepicker } from 'flowbite-react';
 import { editTask } from '../../reducers/tasksReducer';
 
 function TaskEdit({ visible, setVisibility, task }) {
@@ -26,21 +26,17 @@ function TaskEdit({ visible, setVisibility, task }) {
         dueDate: dueDate,
         id: task.id,
       }));
-      setTitle('');
-      setDescription('');
-      setDueDate('');
-      setPriority('');
-      setCategory('');
       setVisibility(false);
     };
 
     const cancelForm = () => {
-        setTitle('');
-        setDescription('');
-        setDueDate('');
-        setPriority('');
-        setCategory('');
         setVisibility(false);
+    };
+
+    const handleDatePickerChange = (date) => {
+      const newDate = date.toISOString().split('T')[0];
+      console.log(newDate);
+      setDueDate(newDate);
     };
 
     return (
@@ -108,13 +104,8 @@ function TaskEdit({ visible, setVisibility, task }) {
                 Due Date
               </label>
               <Datepicker
-                useRange={false}
-                // eslint-disable-next-line react/jsx-boolean-value
-                asSingle={true}
-                value={dueDate}
-                onChange={newValue => setDueDate(newValue)}
+                onSelectedDateChanged={handleDatePickerChange}
               />
-
               <div className="flex space-x-4 mt-7">
                 <button
                   className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"

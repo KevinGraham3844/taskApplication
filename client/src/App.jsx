@@ -11,6 +11,7 @@ function App() {
       <Route path="/" element={<FrontPage navigate={navigate} />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/creation" element={<CreationPage />} />
+
     </Routes>
   );
 }

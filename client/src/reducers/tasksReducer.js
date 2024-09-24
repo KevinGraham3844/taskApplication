@@ -34,8 +34,7 @@ export const initalizeTasks = (userId) => {
 export const newTask = (content) => {
     return async dispatch => {
         try {
-            const updatedContent = { ...content, dueDate: content.dueDate.toISOString().split('T')[0] };
-            const task = await taskService.createTask(updatedContent);
+            const task = await taskService.createTask(content);
             dispatch(appendTasks(task));
             dispatch(setSuccessNotification('Created New Task!'));
         } catch (error) {
@@ -52,18 +51,6 @@ export const clearTasks = () => {
 };
 
 export const editTask = (taskObject) => {
-    if (taskObject.dueDate.startDate) {
-        return async dispatch => {
-            try {
-                const updatedTask = { ...taskObject, dueDate: taskObject.dueDate.startDate.toISOString().split('T')[0] };
-                await taskService.changeTask(updatedTask);
-                dispatch(updateTask(updatedTask));
-                dispatch(setSuccessNotification('Updated Task!'));
-            } catch (error) {
-                dispatch(setErrorNotification('A field is missing on updating task'));
-            }
-        };
-    }
     return async dispatch => {
         try {
             await taskService.changeTask(taskObject);
