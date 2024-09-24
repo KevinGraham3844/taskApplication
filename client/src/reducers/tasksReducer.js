@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import taskService from '../services/task';
+import { setSuccessNotification } from './successNotificationReducer';
+import { setErrorNotification } from './errorNotificationReducer';
 
 const taskSlice = createSlice({
     name: 'tasks',
@@ -31,9 +33,15 @@ export const initalizeTasks = (userId) => {
 
 export const newTask = (content) => {
     return async dispatch => {
-        const updatedContent = { ...content, dueDate: content.dueDate.toISOString().split('T')[0] };
-        const task = await taskService.createTask(updatedContent);
-        dispatch(appendTasks(task));
+        try {
+            const updatedContent = { ...content, dueDate: content.dueDate.toISOString().split('T')[0] };
+            const task = await taskService.createTask(updatedContent);
+            dispatch(appendTasks(task));
+            dispatch(setSuccessNotification('Created New Task!'));
+        } catch (error) {
+            console.log(error);
+            dispatch(setErrorNotification('Missing fields in task'));
+        }
     };
 };
 
@@ -45,15 +53,25 @@ export const clearTasks = () => {
 
 export const editTask = (taskObject) => {
     if (taskObject.dueDate.startDate) {
-        const updatedTask = { ...taskObject, dueDate: taskObject.dueDate.startDate.toISOString().split('T')[0] };
         return async dispatch => {
-            await taskService.changeTask(updatedTask);
-            dispatch(updateTask(updatedTask));
+            try {
+                const updatedTask = { ...taskObject, dueDate: taskObject.dueDate.startDate.toISOString().split('T')[0] };
+                await taskService.changeTask(updatedTask);
+                dispatch(updateTask(updatedTask));
+                dispatch(setSuccessNotification('Updated Task!'));
+            } catch (error) {
+                dispatch(setErrorNotification('A field is missing on updating task'));
+            }
         };
     }
     return async dispatch => {
-        await taskService.changeTask(taskObject);
-        dispatch(updateTask(taskObject));
+        try {
+            await taskService.changeTask(taskObject);
+            dispatch(updateTask(taskObject));
+            dispatch(setSuccessNotification('Updated Task!'));
+        } catch (error) {
+            dispatch(setErrorNotification('A field is missing on updating taks'));
+        }
     };
 };
 

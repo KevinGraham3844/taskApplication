@@ -10,6 +10,7 @@ function FrontPage({ navigate }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const error = useSelector(state => state.errorNotification);
+    const success = useSelector(state => state.successNotification);
     const tasks = [...useSelector(state => state.tasks)];
 
     useEffect(() => {
@@ -31,6 +32,11 @@ function FrontPage({ navigate }) {
 
     return (
       <>
+        {success && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+          <strong className="font-bold">{success}</strong>
+        </div>
+        )}
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong className="font-bold">{error}</strong>
@@ -40,7 +46,7 @@ function FrontPage({ navigate }) {
           <LoggedOutFront navigate={navigate} />
         )}
         <div className="bg-gradient-to-r from-slate-300 to-slate-500 h-screen w-screen flex items-center justify-center">
-          <div className="lg:max-w-4xl lg:flex-col lg:m-auto lg:border-gray-400 lg:border-4 lg:p-1 lg:rounded-xl lg:h-3/6 h-screen w-screen">
+          <div className="lg:max-w-4xl lg:flex-col lg:m-auto lg:border-gray-400 lg:border-4 lg:p-1 lg:rounded-xl lg:h-fit h-screen w-screen">
             {user && tasks && (
             <UserPage user={user} tasks={tasks} />
           )}
