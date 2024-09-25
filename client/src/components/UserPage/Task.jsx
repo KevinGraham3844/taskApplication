@@ -35,6 +35,20 @@ function Task({ task, setVisibility, setTasktoEdit }) {
       </div>
       <div className="px-3 py-2">
         <p>{task.description}</p>
+        <p className="block sm:hidden">
+          <strong>
+            Priority:
+            {' '}
+          </strong>
+          {task.priority}
+        </p>
+        <p className="block lg:hidden">
+          <strong>
+            Category:
+            {' '}
+          </strong>
+          {task.category}
+        </p>
       </div>
     </div>
   );

@@ -76,6 +76,14 @@ function TaskCreationPage({ visible, setVisibility }) {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
+                Due Date
+              </label>
+              <Datepicker
+                onSelectedDateChanged={handleDatePickerChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
                 Description
               </label>
               <textarea
@@ -113,31 +121,23 @@ function TaskCreationPage({ visible, setVisibility }) {
                 </Select>
               </Field>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Due Date
-              </label>
-              <Datepicker
-                inline
-                onSelectedDateChanged={handleDatePickerChange}
-              />
 
-              <div className="flex space-x-4 mt-7">
-                <button
-                  className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                  type="submit"
-                >
-                  Add Task
-                </button>
-                <button
-                  type="button"
-                  className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                  onClick={() => cancelForm()}
-                >
-                  Cancel
-                </button>
-              </div>
+            <div className="flex space-x-4 mt-7">
+              <button
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                type="submit"
+              >
+                Add Task
+              </button>
+              <button
+                type="button"
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                onClick={() => cancelForm()}
+              >
+                Cancel
+              </button>
             </div>
+
           </form>
         </div>
       </div>
