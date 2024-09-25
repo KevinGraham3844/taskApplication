@@ -31,7 +31,7 @@ function FrontPage({ navigate }) {
     }, [dispatch]);
 
     return (
-      <>
+      <div className="min-h-screen bg-gradient-to-r from-slate-300 to-slate-500">
         {success && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
           <strong className="font-bold">{success}</strong>
@@ -45,14 +45,14 @@ function FrontPage({ navigate }) {
         {!user && (
           <LoggedOutFront navigate={navigate} />
         )}
-        <div className="bg-gradient-to-r from-slate-300 to-slate-500 h-screen w-screen flex items-center justify-center">
-          <div className="lg:max-w-4xl lg:flex-col lg:m-auto lg:border-gray-400 lg:border-4 p-1 lg:rounded-xl lg:h-fit h-screen w-screen">
+        <div className="bg-gradient-to-r from-slate-300 to-slate-500 lg:h-screen h-full w-screen flex items-center justify-center">
+          <div className="lg:max-w-4xl lg:flex-col lg:m-auto lg:border-gray-400 lg:border-4 p-1 lg:rounded-xl lg:h-fit h-full w-screen">
             {user && tasks && (
             <UserPage user={user} tasks={tasks} />
           )}
           </div>
         </div>
-      </>
+      </div>
     );
 }
 
