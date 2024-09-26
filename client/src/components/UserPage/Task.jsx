@@ -11,7 +11,6 @@ function Task({ task, setVisibility, setTasktoEdit }) {
       ...task,
       completed: !task.completed,
     };
-    console.log(changedTask);
     dispatch(editTask(changedTask));
   };
 

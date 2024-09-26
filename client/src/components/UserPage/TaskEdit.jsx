@@ -35,7 +35,6 @@ function TaskEdit({ visible, setVisibility, task }) {
 
     const handleDatePickerChange = (date) => {
       const newDate = date.toISOString().split('T')[0];
-      console.log(newDate);
       setDueDate(newDate);
     };
 
