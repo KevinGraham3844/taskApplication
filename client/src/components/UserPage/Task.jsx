@@ -4,6 +4,22 @@ import { Button, Popover } from 'flowbite-react';
 import { deleteTask, editTask } from '../../reducers/tasksReducer';
 
 function Task({ task, setVisibility, setTasktoEdit }) {
+  // eslint-disable-next-line no-useless-escape
+  const dueDateObject = new Date(task.dueDate.split('T')[0].replace(/-/g, '\/'));
+  const todaysDate = new Date();
+
+  const isToday = (todaysDate.getMonth() === dueDateObject.getMonth()
+      && todaysDate.getDate() === dueDateObject.getDate()
+  );
+
+  const isTomorrow = ((todaysDate.getDate() + 1) === (dueDateObject.getDate())
+      && todaysDate.getMonth() === dueDateObject.getMonth()
+  );
+
+  const isYesterday = ((todaysDate.getDate() - 1) === (dueDateObject.getDate())
+      && todaysDate.getMonth() === dueDateObject.getMonth()
+  );
+
   const dispatch = useDispatch();
 
   const changeComplete = () => {
@@ -26,6 +42,8 @@ function Task({ task, setVisibility, setTasktoEdit }) {
     setTasktoEdit(task);
     setVisibility(true);
   };
+
+  console.log(isYesterday);
 
   const content = (
     <div className="w-64 text-sm text-gray-500 dark:text-gray-400">
@@ -73,7 +91,18 @@ function Task({ task, setVisibility, setTasktoEdit }) {
       </td>
       <td className="hidden sm:table-cell px-1 py-2 whitespace-nowrap text-start text-sm font-medium text-gray-800 dark:text-neutral-200">{task.priority}</td>
       <td className="hidden lg:table-cell px-1 py-2 whitespace-nowrap text-start text-sm font-medium text-gray-800 dark:text-neutral-200">{task.category}</td>
-      <td className="px-1 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{task.dueDate.slice(0, 10)}</td>
+      <td className="px-1 py-2 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+        {task.dueDate.slice(0, 10)}
+        {isToday && (
+          <p className="text-xs font-bold text-red-600">Due Today</p>
+        )}
+        {isTomorrow && (
+        <p className="text-xs font-bold text-red-600">Due Tomorrow</p>
+        )}
+        {isYesterday && (
+        <p className="text-xs font-bold text-red-600">Past Due</p>
+        )}
+      </td>
       <td>
         <div className="mb-3 ml-3">
           <button
