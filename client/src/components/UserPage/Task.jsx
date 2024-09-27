@@ -7,17 +7,20 @@ function Task({ task, setVisibility, setTasktoEdit }) {
   // eslint-disable-next-line no-useless-escape
   const dueDateObject = new Date(task.dueDate.split('T')[0].replace(/-/g, '\/'));
   const todaysDate = new Date();
+  const tomorrowsDate = new Date(todaysDate);
+  tomorrowsDate.setDate(tomorrowsDate.getDate() + 1);
 
   const isToday = (todaysDate.getMonth() === dueDateObject.getMonth()
       && todaysDate.getDate() === dueDateObject.getDate()
   );
 
-  const isTomorrow = ((todaysDate.getDate() + 1) === (dueDateObject.getDate())
-      && todaysDate.getMonth() === dueDateObject.getMonth()
+  const isTomorrow = ((tomorrowsDate.getDate()) === (dueDateObject.getDate())
+      && tomorrowsDate.getMonth() === dueDateObject.getMonth()
   );
 
-  const isYesterday = ((todaysDate.getDate() - 1) === (dueDateObject.getDate())
-      && todaysDate.getMonth() === dueDateObject.getMonth()
+  const isYesterday = (((todaysDate.getDate()) > (dueDateObject.getDate())
+      && todaysDate.getMonth() === dueDateObject.getMonth())
+      || todaysDate.getMonth() > dueDateObject.getMonth()
   );
 
   const dispatch = useDispatch();
@@ -43,7 +46,7 @@ function Task({ task, setVisibility, setTasktoEdit }) {
     setVisibility(true);
   };
 
-  console.log(isYesterday);
+  console.log(tomorrowsDate, dueDateObject);
 
   const content = (
     <div className="w-64 text-sm text-gray-500 dark:text-gray-400">
